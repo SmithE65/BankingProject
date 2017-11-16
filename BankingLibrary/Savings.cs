@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingLibrary
 {
+    /// <summary>
+    ///  Interest bearing account
+    /// </summary>
     public class Savings : Account
     {
         double InterestRate = 0.05;

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BankingLibrary
 {
+    /// <summary>
+    /// Stores information for a single bank account
+    /// </summary>
     public class Account
     {
         // Fields
@@ -30,18 +33,39 @@ namespace BankingLibrary
 
         // Methods
 
+        private bool CheckValue(double money)
+        {
+            if (money < 0)
+                return false;
 
+            return true;
+        }
 
         // Puts money into the account
-        public void Deposit(double amount)
+        public bool Deposit(double amount)
         {
-            Balance += amount;
+            if (CheckValue(amount))
+            {
+                Balance += amount;
+                return true;
+            }
+
+            return false;
         }
 
         // Removes money from the account
-        public void Withdraw(double amount)
+        public bool Withdraw(double amount)
         {
-            Balance -= amount;
+            if (!CheckValue(amount))
+                return false;
+
+            if (Balance >= amount)
+            {
+                Balance -= amount;
+                return true;
+            }
+
+            return false;
         }
 
         // Changes the account name
